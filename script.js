@@ -12,11 +12,21 @@ const objs = [
 
 const propToRemove = 'b'
 
-const removeProp = (propToRemove, objs) => {
-    objs.map(({ [propToRemove]: _, ...obj }) => obj)
+// const removeProp = (propToRemove, objs) => {
+//     objs.map(({ [propToRemove]: _, ...obj }) => obj)
+// }
+
+// log(removeProp(propToRemove, objs)[0] === objs[0])
+// log(removeProp(propToRemove, objs))
+
+// removeProp(propToRemove, objs)
+
+function removeProp(prop, objs) {
+    return objs.map(obj => {
+        const { [prop]: _, ...newObj } = obj;
+        return newObj;
+    });
 }
 
-console.log(removeProp(propToRemove, objs)[0] === objs[0])
-console.log(removeProp(propToRemove, objs))
-
-removeProp(propToRemove, objs)
+const newObjs = removeProp(propToRemove, objs);
+console.log(newObjs);
